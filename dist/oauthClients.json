@@ -12,4 +12,9 @@
   "clientId": "spark-server",
   "clientSecret": "spark-server",
   "grants": ["password"]
+},
+{
+  "clientId": "particle-api",
+  "clientSecret": "particle-api",
+  "grants": ["password"]
 }]
