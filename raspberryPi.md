@@ -82,7 +82,7 @@ If you're already familiar with the command line, or you are comfortable setting
 
 	sudo cp 50-particle.rules /etc/udev/rules.d/50-particle.rules
 	sudo cp PhotonInit.py /home/pi/Desktop/PhotonInit.py
-	chmod +x /home/pi/Desktop/PhotonInit.py
+	sudo chmod +x /home/pi/Desktop/PhotonInit.py
 	# Create desktop binaries folder
 	mkdir /home/pi/Desktop/binaries
 
@@ -97,6 +97,14 @@ If you're already familiar with the command line, or you are comfortable setting
 	particle config local_cloud
 
 	particle setup
+
+	sudo apt-get install apache2 -y
+	cd /var/www/html/
+	sudo git clone -b offline-version https://github.com/mrferrar/hs-particle-web-ui.git
+	sudo mv hs-particle-web-ui/* .
+	sudo rm -r hs-particle-web-ui/
+
+	sudo reboot
 
 ```
 

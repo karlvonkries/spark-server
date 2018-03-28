@@ -47,7 +47,7 @@ def setWifiCallback():
         if ssidEntry.get() == '' or passEntry.get() == '':
             response1.set("Error: No Wifi Credentials detected.")
         else :
-            
+
             p = Popen(['particle', 'serial', 'wifi'], stdout=PIPE, stdin=PIPE, stderr=PIPE, universal_newlines=True)
 
             print('n', file=p.stdin, flush=True)
@@ -85,7 +85,7 @@ def setKeysCallback():
             tempstr = result.stdout.decode('utf-8')
             #print(tempstr)
             if 'Okay!  New keys in place, your device should restart' in tempstr:
-                strVar2.set('Keyes successfully traded and saved')
+                response2.set('Keyes successfully traded and saved')
                 result = subprocess.run('rm ./'+photonid.get()+'*', stdout=subprocess.PIPE, shell=True)
                 result = subprocess.run('rm ./backup_rsa_*', stdout=subprocess.PIPE, shell=True)
             else:
@@ -98,7 +98,7 @@ def setNameCallback():
         response3.set('Error: No Device ID Set')
     else:
         tryname = nameEntry.get()
-        
+
         if tryname == '':
             response3.set('Error: No Name Input')
         else:
