@@ -10,6 +10,8 @@ If you're already familiar with the command line, or you are comfortable setting
 	sudo apt-get update
 	sudo apt-get upgrade
 
+	sudo reboot
+
 	#
 	#	Expand your partition to fill your SD card
 	#	Make sure you're booting into the console
@@ -93,18 +95,28 @@ If you're already familiar with the command line, or you are comfortable setting
 	sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
 	pm2 save
 
-	particle config local_cloud apiUrl "http://192.168.4.1:8080"
-	particle config local_cloud
-
-	particle setup
-
 	sudo apt-get install apache2 -y
 	cd /var/www/html/
 	sudo git clone -b offline-version https://github.com/mrferrar/hs-particle-web-ui.git
 	sudo mv hs-particle-web-ui/* .
 	sudo rm -r hs-particle-web-ui/
 
+	particle config local_cloud apiUrl "http://192.168.4.1:8080"
+	particle config local_cloud
+
+	particle setup
+
 	sudo reboot
+
+	# set up i2c-rtc
+	echo -e "i2c-dev" | sudo tee -a /etc/node_module
+	sudo sed -i "s/.*dtparam=i2c_arm=.*/dtparam=i2c_arm=on/" /boot/config.txt
+	echo -e "\ndtoverlay=i2c-rtc,ds3231" | sudo tee -a /boot/config.txt
+	sudo reboot
+	sudo apt-get -y remove fake-hwclock
+	sudo update-rc.d -f fake-hwclock remove
+	sudo sed -i '7,9s/^/#/' /lib/udev/hwclock-set
+
 
 ```
 
