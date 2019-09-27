@@ -47,7 +47,7 @@ If you're already familiar with the command line, or you are comfortable setting
 	#
 	#	Install Node.js
 	# [You can set up other versions here](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-	curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+	curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
   	sudo apt-get install -y nodejs
 
 
@@ -97,9 +97,9 @@ If you're already familiar with the command line, or you are comfortable setting
 
 	sudo apt-get install apache2 -y
 	cd /var/www/html/
-	sudo git clone -b offline-version https://github.com/mrferrar/hs-particle-web-ui.git
-	sudo mv hs-particle-web-ui/* .
-	sudo rm -r hs-particle-web-ui/
+	sudo git clone -b offline-version https://github.com/karlvonkries/hs-web-dashboard.git
+	sudo mv hs-web-dashboard/* .
+	sudo rm -r hs-web-dashboard/
 
 	particle config local_cloud apiUrl "http://192.168.4.1:8080"
 	particle config local_cloud
